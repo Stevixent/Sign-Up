@@ -11,6 +11,26 @@ form.addEventListener('submit', (event) => {
     Validate();
 })
 
+const sendData = (usernameVal, sRate, Count) => {
+    if (sRate === Count) {
+        swal("Hello " + usernameVal, "You are Registered", "success")
+    }
+}
+
+const SuccessMsg = (usernameVal) =>{
+    let formContr = document.getElementsByClassName('form-control');
+    var Count = formContr.length - 1;
+    for(var i = 0; i < formContr.length; i++){
+        if(formContr[i].className === "form-control success"){
+            var sRate = 0 + i;
+            sendData(usernameVal, sRate, Count);
+        }
+        else{
+            return false;
+        }
+    }
+}
+
 
 const isEmail = (emailVal) => {
     var atSymbol = emailVal.indexOf('@');
