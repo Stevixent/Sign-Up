@@ -11,6 +11,39 @@ form.addEventListener('submit', (event) => {
     Validate();
 })
 
+
+
+
+const sendData = (usernameVal, sRate, Count) => {
+    if (sRate === Count) {
+        swal("Hello " + usernameVal, "You are Registered", "success")
+    }
+}
+
+const SuccessMsg = (usernameVal) =>{
+    let formContr = document.getElementsByClassName('form-control');
+    var Count = formContr.length - 1;
+    for(var i = 0; i < formContr.length; i++){
+        if(formContr[i].className === "form-control success"){
+            var sRate = 0 + i;
+            sendData(usernameVal, sRate, Count);
+        }
+        else{
+            return false;
+        }
+    }
+}
+
+
+const isEmail = (emailVal) => {
+    var atSymbol = emailVal.indexOf('@');
+    if(atSymbol < 1) return false;
+    var dot = emailVal.lastIndexOf('.');
+    if(dot <= atSymbol + 2)return false;
+    if(dot === emailVal.length -1) return false;
+    return true;
+}
+
 function Validate() {
     const usernameVal = username.value.trim();
     const lastnameVal = lastname.value.trim();
@@ -75,40 +108,7 @@ function Validate() {
         setSuccessMsg(cpassword); 
     }
     SuccessMsg(usernameVal);
-
 }
-
-const sendData = (usernameVal, sRate, Count) => {
-    if (sRate === Count) {
-        swal("Hello " + usernameVal, "You are Registered", "success")
-    }
-}
-
-const SuccessMsg = (usernameVal) =>{
-    let formContr = document.getElementsByClassName('form-control');
-    var Count = formContr.length - 1;
-    for(var i = 0; i < formContr.length; i++){
-        if(formContr[i].className === "form-control success"){
-            var sRate = 0 + i;
-            sendData(usernameVal, sRate, Count);
-        }
-        else{
-            return false;
-        }
-    }
-}
-
-
-const isEmail = (emailVal) => {
-    var atSymbol = emailVal.indexOf('@');
-    if(atSymbol < 1) return false;
-    var dot = emailVal.lastIndexOf('.');
-    if(dot <= atSymbol + 2)return false;
-    if(dot === emailVal.length -1) return false;
-    return true;
-}
-
-
 
 
 function setErrorMsg(input, errormsgs) {
